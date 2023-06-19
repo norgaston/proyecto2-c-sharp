@@ -14,6 +14,16 @@ namespace SistemaGestion
         public string? Dueño { get; set; }
         public int Autonomia { get; set; }
         public int Service { get; set; }
+        public double CargaRestante
+        {
+            get
+            {
+                int modulo = UnidadDeUso % Autonomia;
+                if (modulo == 0)
+                    return 100;
+                return Math.Round((double)modulo / Autonomia * 100, 2);
+            }
+        }
 
         public abstract string ObtenerInformacion();
     }
@@ -22,7 +32,7 @@ namespace SistemaGestion
     {
         public TeslaModelX()
         {
-            UnidadDeUso = 560;
+            UnidadDeUso = 0;
             Autonomia = 560;
             Service = 1000;
         }
@@ -31,7 +41,7 @@ namespace SistemaGestion
 
         public override string ObtenerInformacion()
         {
-            return $"Modelo: Tesla Model X\nAño: {Año}\nUnidad de Uso: {UnidadDeUso} km\nColor: {Color}\nDueño: {Dueño}\nAsientos: {Asientos}\nAutonomia: {Autonomia} km\nService: cada {Service} km";
+            return $"Producto: Tesla Model X\n Año: {Año}\n Kilometraje: {UnidadDeUso} km\n Color: {Color}\n Dueño: {Dueño}\n Asientos: {Asientos}\n Autonomia: {Autonomia} km\n Service: cada {Service} km Carga/Combustible: {CargaRestante} %";
         }
     }
 
@@ -39,7 +49,7 @@ namespace SistemaGestion
     {
         public TeslaModelS()
         {
-            UnidadDeUso = 650;
+            UnidadDeUso = 0;
             Autonomia = 650;
             Service = 2000;
         }
@@ -48,7 +58,7 @@ namespace SistemaGestion
 
         public override string ObtenerInformacion()
         {
-            return $"Modelo: Tesla Model S\nAño: {Año}\nUnidad de Uso: {UnidadDeUso} km\nColor: {Color}\nDueño: {Dueño}\nAsientos: {Asientos}\nAutonomia: {Autonomia} km\nService: cada {Service} km";
+            return $"Producto: Tesla Model S\n Año: {Año}\n Kilometraje: {UnidadDeUso} km\n Color: {Color}\n Dueño: {Dueño}\n Asientos: {Asientos}\n Autonomia: {Autonomia} km\n Service: cada {Service} km Carga/Combustible: {CargaRestante} %";
         }
     }
 
@@ -56,7 +66,7 @@ namespace SistemaGestion
     {
         public Cybertruck()
         {
-            UnidadDeUso = 800;
+            UnidadDeUso = 0;
             Autonomia = 800;
             Service = 3000;
         }
@@ -65,7 +75,7 @@ namespace SistemaGestion
 
         public override string ObtenerInformacion()
         {
-            return $"Modelo: Cybertruck\nAño: {Año}\nUnidad de Uso: {UnidadDeUso} km\nColor: {Color}\nDueño: {Dueño}\nAsientos: {Asientos}\nAutonomia: {Autonomia} km\nService: cada {Service} km";
+            return $"Producto: Tesla Cybertruck\n Año: {Año}\n Kilometraje: {UnidadDeUso} km\n Color: {Color}\n Dueño: {Dueño}\n Asientos: {Asientos}\n Autonomia: {Autonomia} km\n Service: cada {Service} km Carga/Combustible: {CargaRestante} %";
         }
     }
 
@@ -73,14 +83,14 @@ namespace SistemaGestion
     {
         public SpaceXStarship()
         {
-            UnidadDeUso = 500;
+            UnidadDeUso = 0;
             Autonomia = 500;
             Service = 1000;
         }
 
         public override string ObtenerInformacion()
         {
-            return $"Modelo: SpaceX Starship\nAño: {Año}\nUnidad de Uso: {UnidadDeUso} hs\nColor: {Color}\nDueño: {Dueño}\nAutonomia: {Autonomia} hs\nService: cada {Service} hs";
+            return $"Producto: SpaceX Starship\n Año: {Año}\n Horas de vuelo: {UnidadDeUso} hs\n Color: {Color}\n Dueño: {Dueño}\n Autonomia: {Autonomia} hs\n Service: cada {Service} hs Carga/Combustible: {CargaRestante} %";
         }
     }
 
@@ -88,14 +98,14 @@ namespace SistemaGestion
     {
         public Falcon9()
         {
-            UnidadDeUso = 200;
+            UnidadDeUso = 0;
             Autonomia = 200;
             Service = 400;
         }
 
         public override string ObtenerInformacion()
         {
-            return $"Modelo: Falcon 9\nAño: {Año}\nUnidad de Uso: {UnidadDeUso} hs\nColor: {Color}\nDueño: {Dueño}\nAutonomia: {Autonomia} hs\nService: cada {Service} hs";
+            return $"Producto: SpaceX Falcon 9\n Año: {Año}\n Horas de vuelo: {UnidadDeUso} hs\n Color: {Color}\n Dueño: {Dueño}\n Autonomia: {Autonomia} hs\n Service: cada {Service} hs Carga/Combustible: {CargaRestante} %";
         }
     }
 
