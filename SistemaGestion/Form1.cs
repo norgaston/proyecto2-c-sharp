@@ -24,6 +24,8 @@ namespace SistemaGestion
         private Label label4;
         private TextBox textBoxDueño;
         private Label label5;
+        private ToolTip toolTip;
+        private System.ComponentModel.IContainer components;
         private Button btnEscanear;
 
         public Form1()
@@ -207,7 +209,7 @@ namespace SistemaGestion
             if (producto != null)
             {
                 producto.RealizarEscaneo();
-                //MessageBox.Show(producto.ObtenerInformacion(), "Resultado del Escaneo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
             else
             {
@@ -236,183 +238,189 @@ namespace SistemaGestion
 
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            listBoxProductos=new ListBox();
-            btnAgregar=new Button();
-            btnEliminar=new Button();
-            pictureBox1=new PictureBox();
-            pictureBox2=new PictureBox();
-            btnTeslaMasKm=new Button();
-            btnEscanear=new Button();
-            comboBoxTipoProducto=new ComboBox();
-            label1=new Label();
-            textBoxAño=new TextBox();
-            label2=new Label();
-            textBoxUnidadDeUSo=new TextBox();
-            textBoxColor=new TextBox();
-            label3=new Label();
-            label4=new Label();
-            textBoxDueño=new TextBox();
-            label5=new Label();
+            listBoxProductos = new ListBox();
+            btnAgregar = new Button();
+            btnEliminar = new Button();
+            pictureBox1 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            btnTeslaMasKm = new Button();
+            btnEscanear = new Button();
+            comboBoxTipoProducto = new ComboBox();
+            label1 = new Label();
+            textBoxAño = new TextBox();
+            label2 = new Label();
+            textBoxUnidadDeUSo = new TextBox();
+            textBoxColor = new TextBox();
+            label3 = new Label();
+            label4 = new Label();
+            textBoxDueño = new TextBox();
+            label5 = new Label();
+            toolTip = new ToolTip(components);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // listBoxProductos
             // 
-            listBoxProductos.FormattingEnabled=true;
-            listBoxProductos.ItemHeight=20;
-            listBoxProductos.Location=new Point(12, 203);
-            listBoxProductos.Name="listBoxProductos";
-            listBoxProductos.Size=new Size(973, 184);
-            listBoxProductos.TabIndex=0;
-            listBoxProductos.MouseClick+=lstProductos_MouseClick;
+            listBoxProductos.FormattingEnabled = true;
+            listBoxProductos.ItemHeight = 25;
+            listBoxProductos.Location = new Point(12, 253);
+            listBoxProductos.Name = "listBoxProductos";
+            listBoxProductos.Size = new Size(973, 129);
+            listBoxProductos.TabIndex = 0;
+            listBoxProductos.MouseClick += lstProductos_MouseClick;
             // 
             // btnAgregar
             // 
-            btnAgregar.Location=new Point(348, 34);
-            btnAgregar.Name="btnAgregar";
-            btnAgregar.Size=new Size(163, 29);
-            btnAgregar.TabIndex=1;
-            btnAgregar.Text="Agregar Producto";
-            btnAgregar.UseVisualStyleBackColor=true;
-            btnAgregar.Click+=btnAgregar_Click;
+            btnAgregar.Location = new Point(688, 193);
+            btnAgregar.Name = "btnAgregar";
+            btnAgregar.Size = new Size(151, 29);
+            btnAgregar.TabIndex = 1;
+            btnAgregar.Text = "Agregar Producto";
+            toolTip.SetToolTip(btnAgregar, "Agrega un producto completando los datos");
+            btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.Click += btnAgregar_Click;
             // 
             // btnEliminar
             // 
-            btnEliminar.Location=new Point(348, 69);
-            btnEliminar.Name="btnEliminar";
-            btnEliminar.Size=new Size(163, 29);
-            btnEliminar.TabIndex=2;
-            btnEliminar.Text="Eliminar Producto";
-            btnEliminar.UseVisualStyleBackColor=true;
-            btnEliminar.Click+=btnEliminar_Click;
+            btnEliminar.Location = new Point(348, 43);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(163, 29);
+            btnEliminar.TabIndex = 2;
+            btnEliminar.Text = "Eliminar Producto";
+            toolTip.SetToolTip(btnEliminar, "Selecciona un producto de la lista para eliminarlo");
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // pictureBox1
             // 
-            pictureBox1.Image=(Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location=new Point(23, 21);
-            pictureBox1.Name="pictureBox1";
-            pictureBox1.Size=new Size(249, 63);
-            pictureBox1.SizeMode=PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex=3;
-            pictureBox1.TabStop=false;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(23, 21);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(249, 63);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 3;
+            pictureBox1.TabStop = false;
             // 
             // pictureBox2
             // 
-            pictureBox2.Image=(Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location=new Point(23, 104);
-            pictureBox2.Name="pictureBox2";
-            pictureBox2.Size=new Size(207, 42);
-            pictureBox2.SizeMode=PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex=4;
-            pictureBox2.TabStop=false;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(23, 104);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(207, 42);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 4;
+            pictureBox2.TabStop = false;
             // 
             // btnTeslaMasKm
             // 
-            btnTeslaMasKm.Location=new Point(348, 104);
-            btnTeslaMasKm.Name="btnTeslaMasKm";
-            btnTeslaMasKm.Size=new Size(163, 29);
-            btnTeslaMasKm.TabIndex=5;
-            btnTeslaMasKm.Text="Tesla más Km";
-            btnTeslaMasKm.UseVisualStyleBackColor=true;
-            btnTeslaMasKm.Click+=btnTeslaMasKm_Click;
+            btnTeslaMasKm.Location = new Point(348, 93);
+            btnTeslaMasKm.Name = "btnTeslaMasKm";
+            btnTeslaMasKm.Size = new Size(163, 29);
+            btnTeslaMasKm.TabIndex = 5;
+            btnTeslaMasKm.Text = "Tesla más Km";
+            toolTip.SetToolTip(btnTeslaMasKm, "Clic para mostrar el Tesla con más km");
+            btnTeslaMasKm.UseVisualStyleBackColor = true;
+            btnTeslaMasKm.Click += btnTeslaMasKm_Click;
             // 
             // btnEscanear
             // 
-            btnEscanear.Location=new Point(348, 139);
-            btnEscanear.Name="btnEscanear";
-            btnEscanear.Size=new Size(163, 29);
-            btnEscanear.TabIndex=6;
-            btnEscanear.Text="Escanear Vehículo";
-            btnEscanear.UseVisualStyleBackColor=true;
-            btnEscanear.Click+=btnEscanear_Click;
+            btnEscanear.Location = new Point(348, 146);
+            btnEscanear.Name = "btnEscanear";
+            btnEscanear.Size = new Size(163, 29);
+            btnEscanear.TabIndex = 6;
+            btnEscanear.Text = "Escanear Vehículo";
+            toolTip.SetToolTip(btnEscanear, "Selecciona un producto de la lista para escanearlo");
+            btnEscanear.UseVisualStyleBackColor = true;
+            btnEscanear.Click += btnEscanear_Click;
             // 
             // comboBoxTipoProducto
             // 
-            comboBoxTipoProducto.FormattingEnabled=true;
-            comboBoxTipoProducto.Location=new Point(688, 24);
-            comboBoxTipoProducto.Name="comboBoxTipoProducto";
-            comboBoxTipoProducto.RightToLeft=RightToLeft.No;
-            comboBoxTipoProducto.Size=new Size(151, 28);
-            comboBoxTipoProducto.TabIndex=7;
+            comboBoxTipoProducto.FormattingEnabled = true;
+            comboBoxTipoProducto.Location = new Point(688, 24);
+            comboBoxTipoProducto.Name = "comboBoxTipoProducto";
+            comboBoxTipoProducto.RightToLeft = RightToLeft.No;
+            comboBoxTipoProducto.Size = new Size(151, 33);
+            comboBoxTipoProducto.TabIndex = 7;
             // 
             // label1
             // 
-            label1.AutoSize=true;
-            label1.Location=new Point(613, 32);
-            label1.Name="label1";
-            label1.Size=new Size(69, 20);
-            label1.TabIndex=8;
-            label1.Text="Producto";
+            label1.AutoSize = true;
+            label1.Location = new Point(613, 32);
+            label1.Name = "label1";
+            label1.Size = new Size(85, 25);
+            label1.TabIndex = 8;
+            label1.Text = "Producto";
             // 
             // textBoxAño
             // 
-            textBoxAño.Location=new Point(688, 57);
-            textBoxAño.Name="textBoxAño";
-            textBoxAño.Size=new Size(151, 27);
-            textBoxAño.TabIndex=9;
+            textBoxAño.Location = new Point(688, 57);
+            textBoxAño.Name = "textBoxAño";
+            textBoxAño.Size = new Size(151, 31);
+            textBoxAño.TabIndex = 9;
             // 
             // label2
             // 
-            label2.AutoSize=true;
-            label2.Location=new Point(646, 60);
-            label2.Name="label2";
-            label2.Size=new Size(36, 20);
-            label2.TabIndex=10;
-            label2.Text="Año";
+            label2.AutoSize = true;
+            label2.Location = new Point(646, 60);
+            label2.Name = "label2";
+            label2.Size = new Size(45, 25);
+            label2.TabIndex = 10;
+            label2.Text = "Año";
             // 
             // textBoxUnidadDeUSo
             // 
-            textBoxUnidadDeUSo.Location=new Point(688, 90);
-            textBoxUnidadDeUSo.Name="textBoxUnidadDeUSo";
-            textBoxUnidadDeUSo.Size=new Size(151, 27);
-            textBoxUnidadDeUSo.TabIndex=11;
+            textBoxUnidadDeUSo.Location = new Point(688, 90);
+            textBoxUnidadDeUSo.Name = "textBoxUnidadDeUSo";
+            textBoxUnidadDeUSo.Size = new Size(151, 31);
+            textBoxUnidadDeUSo.TabIndex = 11;
             // 
             // textBoxColor
             // 
-            textBoxColor.Location=new Point(688, 123);
-            textBoxColor.Name="textBoxColor";
-            textBoxColor.Size=new Size(151, 27);
-            textBoxColor.TabIndex=12;
+            textBoxColor.Location = new Point(688, 123);
+            textBoxColor.Name = "textBoxColor";
+            textBoxColor.Size = new Size(151, 31);
+            textBoxColor.TabIndex = 12;
             // 
             // label3
             // 
-            label3.AutoSize=true;
-            label3.Location=new Point(628, 93);
-            label3.Name="label3";
-            label3.Size=new Size(54, 20);
-            label3.TabIndex=13;
-            label3.Text="Km/Hs";
+            label3.AutoSize = true;
+            label3.Location = new Point(628, 93);
+            label3.Name = "label3";
+            label3.Size = new Size(66, 25);
+            label3.TabIndex = 13;
+            label3.Text = "Km/Hs";
             // 
             // label4
             // 
-            label4.AutoSize=true;
-            label4.Location=new Point(637, 130);
-            label4.Name="label4";
-            label4.Size=new Size(45, 20);
-            label4.TabIndex=14;
-            label4.Text="Color";
+            label4.AutoSize = true;
+            label4.Location = new Point(637, 130);
+            label4.Name = "label4";
+            label4.Size = new Size(55, 25);
+            label4.TabIndex = 14;
+            label4.Text = "Color";
             // 
             // textBoxDueño
             // 
-            textBoxDueño.Location=new Point(688, 156);
-            textBoxDueño.Name="textBoxDueño";
-            textBoxDueño.Size=new Size(151, 27);
-            textBoxDueño.TabIndex=15;
+            textBoxDueño.Location = new Point(688, 156);
+            textBoxDueño.Name = "textBoxDueño";
+            textBoxDueño.Size = new Size(151, 31);
+            textBoxDueño.TabIndex = 15;
             // 
             // label5
             // 
-            label5.AutoSize=true;
-            label5.Location=new Point(629, 163);
-            label5.Name="label5";
-            label5.Size=new Size(53, 20);
-            label5.TabIndex=16;
-            label5.Text="Dueño";
+            label5.AutoSize = true;
+            label5.Location = new Point(629, 163);
+            label5.Name = "label5";
+            label5.Size = new Size(65, 25);
+            label5.TabIndex = 16;
+            label5.Text = "Dueño";
             // 
             // Form1
             // 
-            ClientSize=new Size(997, 407);
+            ClientSize = new Size(997, 407);
             Controls.Add(label5);
             Controls.Add(textBoxDueño);
             Controls.Add(label4);
@@ -429,14 +437,9 @@ namespace SistemaGestion
             Controls.Add(pictureBox1);
             Controls.Add(btnEliminar);
             Controls.Add(btnAgregar);
-            ToolTip toolTip = new ToolTip();
-            toolTip.SetToolTip(btnAgregar, "Agrega un producto completando los datos");
-            toolTip.SetToolTip(btnEliminar, "Selecciona un producto de la lista para eliminarlo");
-            toolTip.SetToolTip(btnTeslaMasKm, "Clic para mostrar el Tesla con más km");
-            toolTip.SetToolTip(btnEscanear, "Selecciona un producto de la lista para escanearlo");
             Controls.Add(listBoxProductos);
-            Name="Form1";
-            Text="Sistema de Gestión SpaceX/Tesla";
+            Name = "Form1";
+            Text = "Sistema de Gestión SpaceX/Tesla";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);

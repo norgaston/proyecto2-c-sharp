@@ -14,12 +14,13 @@ namespace SistemaGestion
         public string? Dueño { get; set; }
         public int Autonomia { get; set; }
         public int Service { get; set; }
+
         public double CargaRestante
         {
             get
             {
-                int modulo = UnidadDeUso % Autonomia;
-                if (modulo == 0)
+                int modulo = Autonomia - (UnidadDeUso % Autonomia);
+                if (modulo == Autonomia)
                     return 100;
                 return Math.Round((double)modulo / Autonomia * 100, 2);
             }
