@@ -67,26 +67,6 @@ namespace SistemaGestion
             }
         }
 
-        //private void btnAgregar_Click(object sender, EventArgs e)
-        //{
-        //    // Lógica para agregar un nuevo producto a la lista
-        //    // Puedes mostrar un cuadro de diálogo para que el usuario ingrese los detalles del producto
-        //    // y luego agregar el nuevo producto a la lista
-
-        //    // Ejemplo:
-        //    Producto nuevoProducto = new TeslaModelX()
-        //    {
-        //        Año = 2023,
-        //        Color = "Verde",
-        //        Dueño = "Alice Johnson"
-        //    };
-
-        //    productos.Add(nuevoProducto);
-
-        //    // Mostrar la lista actualizada de productos
-        //    MostrarProductosEnLista();
-        //}
-
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             string tipoProducto = comboBoxTipoProducto.SelectedItem?.ToString();
@@ -232,7 +212,6 @@ namespace SistemaGestion
                     }
                 }
             }
-
             return teslaConMasKm;
         }
 

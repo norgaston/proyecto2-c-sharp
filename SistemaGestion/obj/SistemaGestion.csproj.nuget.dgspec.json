@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Gaston\\Documents\\UPSO\\2023\\PROGRAMACIÓN C#.NET\\Proyectos\\SistemaGestion\\SistemaGestion\\SistemaGestion.csproj": {}
+    "C:\\Users\\Gaston\\Documents\\UPSO\\2023\\PROGRAMACIÓN C#.NET\\Proyectos\\SistemaGestion\\proyecto2-c-sharp\\SistemaGestion\\SistemaGestion.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Gaston\\Documents\\UPSO\\2023\\PROGRAMACIÓN C#.NET\\Proyectos\\SistemaGestion\\SistemaGestion\\SistemaGestion.csproj": {
+    "C:\\Users\\Gaston\\Documents\\UPSO\\2023\\PROGRAMACIÓN C#.NET\\Proyectos\\SistemaGestion\\proyecto2-c-sharp\\SistemaGestion\\SistemaGestion.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Gaston\\Documents\\UPSO\\2023\\PROGRAMACIÓN C#.NET\\Proyectos\\SistemaGestion\\SistemaGestion\\SistemaGestion.csproj",
+        "projectUniqueName": "C:\\Users\\Gaston\\Documents\\UPSO\\2023\\PROGRAMACIÓN C#.NET\\Proyectos\\SistemaGestion\\proyecto2-c-sharp\\SistemaGestion\\SistemaGestion.csproj",
         "projectName": "SistemaGestion",
-        "projectPath": "C:\\Users\\Gaston\\Documents\\UPSO\\2023\\PROGRAMACIÓN C#.NET\\Proyectos\\SistemaGestion\\SistemaGestion\\SistemaGestion.csproj",
+        "projectPath": "C:\\Users\\Gaston\\Documents\\UPSO\\2023\\PROGRAMACIÓN C#.NET\\Proyectos\\SistemaGestion\\proyecto2-c-sharp\\SistemaGestion\\SistemaGestion.csproj",
         "packagesPath": "C:\\Users\\Gaston\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Gaston\\Documents\\UPSO\\2023\\PROGRAMACIÓN C#.NET\\Proyectos\\SistemaGestion\\SistemaGestion\\obj\\",
+        "outputPath": "C:\\Users\\Gaston\\Documents\\UPSO\\2023\\PROGRAMACIÓN C#.NET\\Proyectos\\SistemaGestion\\proyecto2-c-sharp\\SistemaGestion\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Gaston\\AppData\\Roaming\\NuGet\\NuGet.Config",
