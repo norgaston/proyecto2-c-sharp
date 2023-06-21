@@ -26,6 +26,21 @@ namespace SistemaGestion
         }
 
         public abstract string ObtenerInformacion();
+
+        public virtual void RealizarEscaneo()
+        {
+            // Lógica de escaneo común a todos los productos
+
+            // Obtener el resultado del escaneo
+            string resultado = ObtenerResultadoEscaneo();
+
+            resultado = ObtenerInformacion() + "\n\n" + resultado;
+
+            // Mostrar el resultado en un popup
+            MessageBox.Show(resultado, "Resultado del escaneo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        protected abstract string ObtenerResultadoEscaneo();
     }
 
     public class TeslaModelX : Producto
@@ -41,7 +56,17 @@ namespace SistemaGestion
 
         public override string ObtenerInformacion()
         {
-            return $"Producto: Tesla Model X\n Año: {Año}\n Kilometraje: {UnidadDeUso} km\n Color: {Color}\n Dueño: {Dueño}\n Asientos: {Asientos}\n Autonomia: {Autonomia} km\n Service: cada {Service} km Carga/Combustible: {CargaRestante} %";
+            return $" Producto: Tesla Model X\n\n Año: {Año}\n Kilometraje: {UnidadDeUso} km\n Color: {Color}\n Dueño: {Dueño}\n Asientos: {Asientos}\n Autonomia: {Autonomia} km\n Service: cada {Service} km\n Carga/Combustible: {CargaRestante} %";
+        }
+
+        protected override string ObtenerResultadoEscaneo()
+        {
+            // Lógica específica de escaneo para el Tesla Model X
+
+            // Construir el mensaje de resultado
+            string mensaje = "Service 1: (1) y (2)";
+
+            return mensaje;
         }
     }
 
@@ -58,7 +83,17 @@ namespace SistemaGestion
 
         public override string ObtenerInformacion()
         {
-            return $"Producto: Tesla Model S\n Año: {Año}\n Kilometraje: {UnidadDeUso} km\n Color: {Color}\n Dueño: {Dueño}\n Asientos: {Asientos}\n Autonomia: {Autonomia} km\n Service: cada {Service} km Carga/Combustible: {CargaRestante} %";
+            return $" Producto: Tesla Model S\n\n Año: {Año}\n Kilometraje: {UnidadDeUso} km\n Color: {Color}\n Dueño: {Dueño}\n Asientos: {Asientos}\n Autonomia: {Autonomia} km\n Service: cada {Service} km\n Carga/Combustible: {CargaRestante} %";
+        }
+
+        protected override string ObtenerResultadoEscaneo()
+        {
+            // Lógica específica de escaneo para el Tesla Model S
+
+            // Construir el mensaje de resultado
+            string mensaje = "Service 1: (1) y (2)\nService 2: (1), (2), (4), (5) y (6)";
+
+            return mensaje;
         }
     }
 
@@ -75,7 +110,17 @@ namespace SistemaGestion
 
         public override string ObtenerInformacion()
         {
-            return $"Producto: Tesla Cybertruck\n Año: {Año}\n Kilometraje: {UnidadDeUso} km\n Color: {Color}\n Dueño: {Dueño}\n Asientos: {Asientos}\n Autonomia: {Autonomia} km\n Service: cada {Service} km Carga/Combustible: {CargaRestante} %";
+            return $" Producto: Tesla Cybertruck\n\n Año: {Año}\n Kilometraje: {UnidadDeUso} km\n Color: {Color}\n Dueño: {Dueño}\n Asientos: {Asientos}\n Autonomia: {Autonomia} km\n Service: cada {Service} km\n Carga/Combustible: {CargaRestante} %";
+        }
+
+        protected override string ObtenerResultadoEscaneo()
+        {
+            // Lógica específica de escaneo para el Tesla Model S
+
+            // Construir el mensaje de resultado
+            string mensaje = "Service 1: (1) y (2)\nService 2: (1), (2), (4), (5) y (6)";
+
+            return mensaje;
         }
     }
 
@@ -90,7 +135,17 @@ namespace SistemaGestion
 
         public override string ObtenerInformacion()
         {
-            return $"Producto: SpaceX Starship\n Año: {Año}\n Horas de vuelo: {UnidadDeUso} hs\n Color: {Color}\n Dueño: {Dueño}\n Autonomia: {Autonomia} hs\n Service: cada {Service} hs Carga/Combustible: {CargaRestante} %";
+            return $" Producto: SpaceX Starship\n\n Año: {Año}\n Horas de vuelo: {UnidadDeUso} hs\n Color: {Color}\n Dueño: {Dueño}\n Autonomia: {Autonomia} hs\n Service: cada {Service} hs\n Carga/Combustible: {CargaRestante} %";
+        }
+
+        protected override string ObtenerResultadoEscaneo()
+        {
+            // Lógica específica de escaneo para el Tesla Model S
+
+            // Construir el mensaje de resultado
+            string mensaje = "Service 1: (1) y (2)\nService 2: (1), (2), (4), (5) y (6)";
+
+            return mensaje;
         }
     }
 
@@ -105,7 +160,17 @@ namespace SistemaGestion
 
         public override string ObtenerInformacion()
         {
-            return $"Producto: SpaceX Falcon 9\n Año: {Año}\n Horas de vuelo: {UnidadDeUso} hs\n Color: {Color}\n Dueño: {Dueño}\n Autonomia: {Autonomia} hs\n Service: cada {Service} hs Carga/Combustible: {CargaRestante} %";
+            return $" Producto: SpaceX Falcon 9\n\n Año: {Año}\n Horas de vuelo: {UnidadDeUso} hs\n Color: {Color}\n Dueño: {Dueño}\n Autonomia: {Autonomia} hs\n Service: cada {Service} hs\n Carga/Combustible: {CargaRestante} %";
+        }
+
+        protected override string ObtenerResultadoEscaneo()
+        {
+            // Lógica específica de escaneo para el Tesla Model S
+
+            // Construir el mensaje de resultado
+            string mensaje = "Service 1: (1) y (2)\nService 2: (1), (2), (4), (5) y (6)";
+
+            return mensaje;
         }
     }
 

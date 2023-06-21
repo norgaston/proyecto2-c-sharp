@@ -14,7 +14,7 @@ namespace SistemaGestion
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private Button btnTeslaMasKm;
-        private Button button2;
+        private Button btnEscanear;
 
         public Form1()
         {
@@ -97,10 +97,36 @@ namespace SistemaGestion
                 {
                     // Seleccionar el producto y resaltarlo en la ListBox
                     listBoxProductos.SetSelected(indice, true);
+                    MessageBox.Show(teslaConMasKm.ObtenerInformacion());
                 }
+            }
+            else
+            {
+                MessageBox.Show("No se encontró ningún Tesla en la lista.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        private Producto producto;
+        private void lstProductos_MouseClick(object sender, MouseEventArgs e)
+        {
+            int selectedIndex = listBoxProductos.SelectedIndex;
+            if (selectedIndex >= 0 && selectedIndex < productos.Count)
+            {
+                producto = productos[selectedIndex];
+            }
+        }
+        private void btnEscanear_Click(object sender, EventArgs e)
+        {
+            if (producto != null)
+            {
+                producto.RealizarEscaneo();
+                //MessageBox.Show(producto.ObtenerInformacion(), "Resultado del Escaneo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un producto antes de realizar el escaneo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private Producto ObtenerTeslaConMasKilometros()
         {
             Producto teslaConMasKm = null;
@@ -130,7 +156,7 @@ namespace SistemaGestion
             pictureBox1=new PictureBox();
             pictureBox2=new PictureBox();
             btnTeslaMasKm=new Button();
-            button2=new Button();
+            btnEscanear=new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
@@ -143,6 +169,8 @@ namespace SistemaGestion
             listBoxProductos.Name="listBoxProductos";
             listBoxProductos.Size=new Size(973, 184);
             listBoxProductos.TabIndex=0;
+            // Asignación del evento MouseClick al control listBoxProductos
+            listBoxProductos.MouseClick += lstProductos_MouseClick;
             // 
             // btnAgregar
             // 
@@ -194,19 +222,20 @@ namespace SistemaGestion
             btnTeslaMasKm.UseVisualStyleBackColor=true;
             btnTeslaMasKm.Click+=btnTeslaMasKm_Click;
             // 
-            // button2
+            // btnEscanear
             // 
-            button2.Location=new Point(595, 108);
-            button2.Name="button2";
-            button2.Size=new Size(157, 29);
-            button2.TabIndex=6;
-            button2.Text="Escanear Vehículo";
-            button2.UseVisualStyleBackColor=true;
+            btnEscanear.Location=new Point(595, 108);
+            btnEscanear.Name="btnEscanear";
+            btnEscanear.Size=new Size(157, 29);
+            btnEscanear.TabIndex=6;
+            btnEscanear.Text="Escanear Vehículo";
+            btnEscanear.UseVisualStyleBackColor=true;
+            btnEscanear.Click+=btnEscanear_Click;
             // 
             // Form1
             // 
             ClientSize=new Size(997, 407);
-            Controls.Add(button2);
+            Controls.Add(btnEscanear);
             Controls.Add(btnTeslaMasKm);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
@@ -219,10 +248,6 @@ namespace SistemaGestion
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
-
-        private void Form1_Load_1(object sender, EventArgs e)
-        {
-            btnTeslaMasKm.Click += btnTeslaMasKm_Click;
-        }
+                
     }
 }
