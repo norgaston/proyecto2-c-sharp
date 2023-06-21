@@ -429,6 +429,11 @@ namespace SistemaGestion
             Controls.Add(pictureBox1);
             Controls.Add(btnEliminar);
             Controls.Add(btnAgregar);
+            ToolTip toolTip = new ToolTip();
+            toolTip.SetToolTip(btnAgregar, "Agrega un producto completando los datos");
+            toolTip.SetToolTip(btnEliminar, "Selecciona un producto de la lista para eliminarlo");
+            toolTip.SetToolTip(btnTeslaMasKm, "Clic para mostrar el Tesla con más km");
+            toolTip.SetToolTip(btnEscanear, "Selecciona un producto de la lista para escanearlo");
             Controls.Add(listBoxProductos);
             Name="Form1";
             Text="Sistema de Gestión SpaceX/Tesla";
