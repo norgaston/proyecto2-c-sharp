@@ -14,6 +14,16 @@ namespace SistemaGestion
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private Button btnTeslaMasKm;
+        private ComboBox comboBoxTipoProducto;
+        private Label label1;
+        private TextBox textBoxAño;
+        private Label label2;
+        private TextBox textBoxUnidadDeUSo;
+        private TextBox textBoxColor;
+        private Label label3;
+        private Label label4;
+        private TextBox textBoxDueño;
+        private Label label5;
         private Button btnEscanear;
 
         public Form1()
@@ -34,7 +44,16 @@ namespace SistemaGestion
 
             // Mostrar los productos en el ListBox
             MostrarProductosEnLista();
+
+            // Configurar el ComboBox con los tipos de productos
+            //comboBoxTipoProducto.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxTipoProducto.Items.Add("Tesla Model X");
+            comboBoxTipoProducto.Items.Add("Tesla Model S");
+            comboBoxTipoProducto.Items.Add("Cybertruck");
+            comboBoxTipoProducto.Items.Add("SpaceX Starship");
+            comboBoxTipoProducto.Items.Add("Falcon 9");
         }
+
 
         private void MostrarProductosEnLista()
         {
@@ -46,25 +65,93 @@ namespace SistemaGestion
             }
         }
 
+        //private void btnAgregar_Click(object sender, EventArgs e)
+        //{
+        //    // Lógica para agregar un nuevo producto a la lista
+        //    // Puedes mostrar un cuadro de diálogo para que el usuario ingrese los detalles del producto
+        //    // y luego agregar el nuevo producto a la lista
+
+        //    // Ejemplo:
+        //    Producto nuevoProducto = new TeslaModelX()
+        //    {
+        //        Año = 2023,
+        //        Color = "Verde",
+        //        Dueño = "Alice Johnson"
+        //    };
+
+        //    productos.Add(nuevoProducto);
+
+        //    // Mostrar la lista actualizada de productos
+        //    MostrarProductosEnLista();
+        //}
+
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            // Lógica para agregar un nuevo producto a la lista
-            // Puedes mostrar un cuadro de diálogo para que el usuario ingrese los detalles del producto
-            // y luego agregar el nuevo producto a la lista
+            string tipoProducto = comboBoxTipoProducto.SelectedItem?.ToString();
+            string año = textBoxAño.Text;
+            string unidadDeUso = textBoxUnidadDeUSo.Text;
+            string color = textBoxColor.Text;
+            string dueño = textBoxDueño.Text;
 
-            // Ejemplo:
-            Producto nuevoProducto = new TeslaModelX()
+            // Validar que todos los campos estén completos
+            if (string.IsNullOrEmpty(tipoProducto) || string.IsNullOrEmpty(año) ||
+                string.IsNullOrEmpty(unidadDeUso) || string.IsNullOrEmpty(color) ||
+                string.IsNullOrEmpty(dueño))
             {
-                Año = 2023,
-                Color = "Verde",
-                Dueño = "Alice Johnson"
-            };
+                MessageBox.Show("Por favor, complete todos los campos antes de agregar el producto.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            productos.Add(nuevoProducto);
+            // Crear el nuevo producto según el tipo seleccionado
+            Producto nuevoProducto = null;
 
-            // Mostrar la lista actualizada de productos
-            MostrarProductosEnLista();
+            switch (tipoProducto)
+            {
+                case "Tesla Model X":
+                    nuevoProducto = new TeslaModelX();
+                    break;
+                case "Tesla Model S":
+                    nuevoProducto = new TeslaModelS();
+                    break;
+                case "Cybertruck":
+                    nuevoProducto = new Cybertruck();
+                    break;
+                case "SpaceX Starship":
+                    nuevoProducto = new SpaceXStarship();
+                    break;
+                case "Falcon 9":
+                    nuevoProducto = new Falcon9();
+                    break;
+            }
+
+            if (nuevoProducto != null)
+            {
+                // Asignar los valores ingresados al nuevo producto
+                nuevoProducto.Año = int.Parse(año);
+                nuevoProducto.Color = color;
+                nuevoProducto.Dueño = dueño;
+                nuevoProducto.UnidadDeUso = int.Parse(unidadDeUso);
+
+                // Agregar el nuevo producto a la lista
+                productos.Add(nuevoProducto);
+
+                // Mostrar la lista actualizada de productos
+                MostrarProductosEnLista();
+
+                // Limpiar los campos de entrada
+                LimpiarCamposEntrada();
+            }
         }
+
+        private void LimpiarCamposEntrada()
+        {
+            comboBoxTipoProducto.SelectedIndex = -1;
+            textBoxAño.Clear();
+            textBoxUnidadDeUSo.Clear();
+            textBoxColor.Clear();
+            textBoxDueño.Clear();
+        }
+
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
@@ -157,6 +244,16 @@ namespace SistemaGestion
             pictureBox2=new PictureBox();
             btnTeslaMasKm=new Button();
             btnEscanear=new Button();
+            comboBoxTipoProducto=new ComboBox();
+            label1=new Label();
+            textBoxAño=new TextBox();
+            label2=new Label();
+            textBoxUnidadDeUSo=new TextBox();
+            textBoxColor=new TextBox();
+            label3=new Label();
+            label4=new Label();
+            textBoxDueño=new TextBox();
+            label5=new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
@@ -169,12 +266,11 @@ namespace SistemaGestion
             listBoxProductos.Name="listBoxProductos";
             listBoxProductos.Size=new Size(973, 184);
             listBoxProductos.TabIndex=0;
-            // Asignación del evento MouseClick al control listBoxProductos
-            listBoxProductos.MouseClick += lstProductos_MouseClick;
+            listBoxProductos.MouseClick+=lstProductos_MouseClick;
             // 
             // btnAgregar
             // 
-            btnAgregar.Location=new Point(348, 59);
+            btnAgregar.Location=new Point(348, 34);
             btnAgregar.Name="btnAgregar";
             btnAgregar.Size=new Size(163, 29);
             btnAgregar.TabIndex=1;
@@ -184,7 +280,7 @@ namespace SistemaGestion
             // 
             // btnEliminar
             // 
-            btnEliminar.Location=new Point(348, 104);
+            btnEliminar.Location=new Point(348, 69);
             btnEliminar.Name="btnEliminar";
             btnEliminar.Size=new Size(163, 29);
             btnEliminar.TabIndex=2;
@@ -214,9 +310,9 @@ namespace SistemaGestion
             // 
             // btnTeslaMasKm
             // 
-            btnTeslaMasKm.Location=new Point(595, 59);
+            btnTeslaMasKm.Location=new Point(348, 104);
             btnTeslaMasKm.Name="btnTeslaMasKm";
-            btnTeslaMasKm.Size=new Size(157, 29);
+            btnTeslaMasKm.Size=new Size(163, 29);
             btnTeslaMasKm.TabIndex=5;
             btnTeslaMasKm.Text="Tesla más Km";
             btnTeslaMasKm.UseVisualStyleBackColor=true;
@@ -224,17 +320,109 @@ namespace SistemaGestion
             // 
             // btnEscanear
             // 
-            btnEscanear.Location=new Point(595, 108);
+            btnEscanear.Location=new Point(348, 139);
             btnEscanear.Name="btnEscanear";
-            btnEscanear.Size=new Size(157, 29);
+            btnEscanear.Size=new Size(163, 29);
             btnEscanear.TabIndex=6;
             btnEscanear.Text="Escanear Vehículo";
             btnEscanear.UseVisualStyleBackColor=true;
             btnEscanear.Click+=btnEscanear_Click;
             // 
+            // comboBoxTipoProducto
+            // 
+            comboBoxTipoProducto.FormattingEnabled=true;
+            comboBoxTipoProducto.Location=new Point(688, 24);
+            comboBoxTipoProducto.Name="comboBoxTipoProducto";
+            comboBoxTipoProducto.RightToLeft=RightToLeft.No;
+            comboBoxTipoProducto.Size=new Size(151, 28);
+            comboBoxTipoProducto.TabIndex=7;
+            // 
+            // label1
+            // 
+            label1.AutoSize=true;
+            label1.Location=new Point(613, 32);
+            label1.Name="label1";
+            label1.Size=new Size(69, 20);
+            label1.TabIndex=8;
+            label1.Text="Producto";
+            // 
+            // textBoxAño
+            // 
+            textBoxAño.Location=new Point(688, 57);
+            textBoxAño.Name="textBoxAño";
+            textBoxAño.Size=new Size(151, 27);
+            textBoxAño.TabIndex=9;
+            // 
+            // label2
+            // 
+            label2.AutoSize=true;
+            label2.Location=new Point(646, 60);
+            label2.Name="label2";
+            label2.Size=new Size(36, 20);
+            label2.TabIndex=10;
+            label2.Text="Año";
+            // 
+            // textBoxUnidadDeUSo
+            // 
+            textBoxUnidadDeUSo.Location=new Point(688, 90);
+            textBoxUnidadDeUSo.Name="textBoxUnidadDeUSo";
+            textBoxUnidadDeUSo.Size=new Size(151, 27);
+            textBoxUnidadDeUSo.TabIndex=11;
+            // 
+            // textBoxColor
+            // 
+            textBoxColor.Location=new Point(688, 123);
+            textBoxColor.Name="textBoxColor";
+            textBoxColor.Size=new Size(151, 27);
+            textBoxColor.TabIndex=12;
+            // 
+            // label3
+            // 
+            label3.AutoSize=true;
+            label3.Location=new Point(628, 93);
+            label3.Name="label3";
+            label3.Size=new Size(54, 20);
+            label3.TabIndex=13;
+            label3.Text="Km/Hs";
+            // 
+            // label4
+            // 
+            label4.AutoSize=true;
+            label4.Location=new Point(637, 130);
+            label4.Name="label4";
+            label4.Size=new Size(45, 20);
+            label4.TabIndex=14;
+            label4.Text="Color";
+            // 
+            // textBoxDueño
+            // 
+            textBoxDueño.Location=new Point(688, 156);
+            textBoxDueño.Name="textBoxDueño";
+            textBoxDueño.Size=new Size(151, 27);
+            textBoxDueño.TabIndex=15;
+            // 
+            // label5
+            // 
+            label5.AutoSize=true;
+            label5.Location=new Point(629, 163);
+            label5.Name="label5";
+            label5.Size=new Size(53, 20);
+            label5.TabIndex=16;
+            label5.Text="Dueño";
+            // 
             // Form1
             // 
             ClientSize=new Size(997, 407);
+            Controls.Add(label5);
+            Controls.Add(textBoxDueño);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(textBoxColor);
+            Controls.Add(textBoxUnidadDeUSo);
+            Controls.Add(label2);
+            Controls.Add(textBoxAño);
+            Controls.Add(label1);
+            Controls.Add(comboBoxTipoProducto);
             Controls.Add(btnEscanear);
             Controls.Add(btnTeslaMasKm);
             Controls.Add(pictureBox2);
@@ -247,7 +435,7 @@ namespace SistemaGestion
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
-                
     }
 }
