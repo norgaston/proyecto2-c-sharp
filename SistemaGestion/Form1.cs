@@ -186,6 +186,12 @@ namespace SistemaGestion
         }
         private void btnEscanear_Click(object sender, EventArgs e)
         {
+            if (listBoxProductos.SelectedIndex == -1) // Verificar si no se ha seleccionado ningún elemento en la ListBox
+            {
+                MessageBox.Show("No hay vehículos para escanear.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             if (producto != null)
             {
                 producto.RealizarEscaneo();

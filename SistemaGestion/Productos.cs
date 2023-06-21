@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace SistemaGestion
 {
+    // Clase base abstracta para representar un producto
     public abstract class Producto
     {
+        // Propiedades comunes a todos los productos
         public int Año { get; set; }
         public int UnidadDeUso { get; set; }
         public string? Color { get; set; }
@@ -15,19 +17,26 @@ namespace SistemaGestion
         public int Autonomia { get; set; }
         public int Service { get; set; }
 
+        // Propiedad calculada para obtener el porcentaje de carga restante
         public double CargaRestante
         {
             get
             {
+                // Calcula el módulo de la autonomía en función de la unidad de uso
                 int modulo = Autonomia - (UnidadDeUso % Autonomia);
+
                 if (modulo == Autonomia)
                     return 100;
+
+                // Calcula el porcentaje de carga restante redondeado a 2 decimales
                 return Math.Round((double)modulo / Autonomia * 100, 2);
             }
         }
 
+        // Método abstracto para obtener información específica del producto
         public abstract string ObtenerInformacion();
 
+        // Método virtual para realizar el escaneo del producto
         public virtual void RealizarEscaneo()
         {
             // Lógica de escaneo común a todos los productos
@@ -41,11 +50,14 @@ namespace SistemaGestion
             MessageBox.Show(resultado, "Resultado del escaneo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        // Método abstracto para obtener el resultado del escaneo específico del producto
         protected abstract string ObtenerResultadoEscaneo();
     }
 
+    // Clase base abstracta para los productos Tesla
     public abstract class TeslaBase : Producto
     {
+        // Implementación del método abstracto para obtener el resultado del escaneo de un producto Tesla
         protected override string ObtenerResultadoEscaneo()
         {
             int cantidadServices = this.UnidadDeUso / this.Service;
@@ -56,7 +68,7 @@ namespace SistemaGestion
                 // Agregar los servicios realizados a la lista
                 string servicio = $"Service {i}: ";
 
-                // Verificar si se debe realizar el control de cinturones de seguridad
+                // Verificar si se debe realizar el control de cinturones de seguridad en función del service actual
                 if (i * this.Service >= 1000)
                 {
                     servicio += "(1) ";
@@ -81,6 +93,7 @@ namespace SistemaGestion
                 {
                     servicio += "(6) ";
                 }
+
                 serviciosRealizados.Add(servicio);
             }
 
@@ -97,6 +110,7 @@ namespace SistemaGestion
         }
     }
 
+    // Clase concreta que representa el modelo Tesla Model X
     public class TeslaModelX : TeslaBase
     {
         public TeslaModelX()
@@ -108,12 +122,14 @@ namespace SistemaGestion
 
         public int Asientos { get; set; } = 7;
 
+        // Implementación del método para obtener información específica del Tesla Model X
         public override string ObtenerInformacion()
         {
             return $" Producto: Tesla Model X\n\n Año: {Año}\n Kilometraje: {UnidadDeUso} km\n Color: {Color}\n Dueño: {Dueño}\n Asientos: {Asientos}\n Autonomia: {Autonomia} km\n Service: cada {Service} km\n Combustible restante: {CargaRestante} %";
         }
     }
 
+    // Clase concreta que representa el modelo Tesla Model S
     public class TeslaModelS : TeslaBase
     {
         public TeslaModelS()
@@ -125,12 +141,14 @@ namespace SistemaGestion
 
         public int Asientos { get; set; } = 5;
 
+        // Implementación del método para obtener información específica del Tesla Model S
         public override string ObtenerInformacion()
         {
             return $" Producto: Tesla Model S\n\n Año: {Año}\n Kilometraje: {UnidadDeUso} km\n Color: {Color}\n Dueño: {Dueño}\n Asientos: {Asientos}\n Autonomia: {Autonomia} km\n Service: cada {Service} km\n Combustible restante: {CargaRestante} %";
         }
     }
 
+    // Clase concreta que representa el modelo Tesla Cybertruck
     public class Cybertruck : TeslaBase
     {
         public Cybertruck()
@@ -142,14 +160,17 @@ namespace SistemaGestion
 
         public int Asientos { get; set; } = 6;
 
+        // Implementación del método para obtener información específica del Tesla Cybertruck
         public override string ObtenerInformacion()
         {
             return $" Producto: Tesla Cybertruck\n\n Año: {Año}\n Kilometraje: {UnidadDeUso} km\n Color: {Color}\n Dueño: {Dueño}\n Asientos: {Asientos}\n Autonomia: {Autonomia} km\n Service: cada {Service} km\n Combustible restante: {CargaRestante} %";
         }
     }
 
+    // Clase base abstracta para los productos SpaceX
     public abstract class SpaceXBase : Producto
     {
+        // Implementación del método abstracto para obtener el resultado del escaneo de un producto SpaceX
         protected override string ObtenerResultadoEscaneo()
         {
             int cantidadServices = this.UnidadDeUso / this.Service;
@@ -160,7 +181,7 @@ namespace SistemaGestion
                 // Agregar los servicios realizados a la lista
                 string servicio = $"Service {i}: ";
 
-                // Verificar si se debe realizar los controles
+                // Verificar si se debe realizar los controles en función del service actual
                 if (i * this.Service >= 1000)
                 {
                     servicio += "(3) ";
@@ -170,6 +191,7 @@ namespace SistemaGestion
                 {
                     servicio += "(4) ";
                 }
+
                 serviciosRealizados.Add(servicio);
             }
 
@@ -186,6 +208,7 @@ namespace SistemaGestion
         }
     }
 
+    // Clase concreta que representa la SpaceX Starship
     public class SpaceXStarship : SpaceXBase
     {
         public SpaceXStarship()
@@ -195,12 +218,14 @@ namespace SistemaGestion
             Service = 1000;
         }
 
+        // Implementación del método para obtener información específica de la SpaceX Starship
         public override string ObtenerInformacion()
         {
             return $" Producto: SpaceX Starship\n\n Año: {Año}\n Horas de vuelo: {UnidadDeUso} hs\n Color: {Color}\n Dueño: {Dueño}\n Autonomia: {Autonomia} hs\n Service: cada {Service} hs\n Carga restante: {CargaRestante} %";
         }
     }
 
+    // Clase concreta que representa la SpaceX Falcon 9
     public class Falcon9 : SpaceXBase
     {
         public Falcon9()
@@ -210,10 +235,10 @@ namespace SistemaGestion
             Service = 400;
         }
 
+        // Implementación del método para obtener información específica de la SpaceX Falcon 9
         public override string ObtenerInformacion()
         {
             return $" Producto: SpaceX Falcon 9\n\n Año: {Año}\n Horas de vuelo: {UnidadDeUso} hs\n Color: {Color}\n Dueño: {Dueño}\n Autonomia: {Autonomia} hs\n Service: cada {Service} hs\n Carga restante: {CargaRestante} %";
         }
     }
 }
-
