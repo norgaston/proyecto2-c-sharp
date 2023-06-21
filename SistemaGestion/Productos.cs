@@ -57,7 +57,7 @@ namespace SistemaGestion
 
         public override string ObtenerInformacion()
         {
-            return $" Producto: Tesla Model X\n\n Año: {Año}\n Kilometraje: {UnidadDeUso} km\n Color: {Color}\n Dueño: {Dueño}\n Asientos: {Asientos}\n Autonomia: {Autonomia} km\n Service: cada {Service} km\n Carga/Combustible: {CargaRestante} %";
+            return $" Producto: Tesla Model X\n\n Año: {Año}\n Kilometraje: {UnidadDeUso} km\n Color: {Color}\n Dueño: {Dueño}\n Asientos: {Asientos}\n Autonomia: {Autonomia} km\n Service: cada {Service} km\n Combustible restante: {CargaRestante} %";
         }
 
         protected override string ObtenerResultadoEscaneo()
@@ -84,15 +84,55 @@ namespace SistemaGestion
 
         public override string ObtenerInformacion()
         {
-            return $" Producto: Tesla Model S\n\n Año: {Año}\n Kilometraje: {UnidadDeUso} km\n Color: {Color}\n Dueño: {Dueño}\n Asientos: {Asientos}\n Autonomia: {Autonomia} km\n Service: cada {Service} km\n Carga/Combustible: {CargaRestante} %";
+            return $" Producto: Tesla Model S\n\n Año: {Año}\n Kilometraje: {UnidadDeUso} km\n Color: {Color}\n Dueño: {Dueño}\n Asientos: {Asientos}\n Autonomia: {Autonomia} km\n Service: cada {Service} km\n Combustible restante: {CargaRestante} %";
         }
 
         protected override string ObtenerResultadoEscaneo()
         {
-            // Lógica específica de escaneo para el Tesla Model S
+            int cantidadServices = this.UnidadDeUso / this.Service;
+            List<string> serviciosRealizados = new List<string>();
+
+            for (int i = 1; i < cantidadServices + 1; i++)
+            {
+                // Agregar los servicios realizados a la lista
+                string servicio = $"Service {i}: ";
+
+                // Verificar si se debe realizar el control de cinturones de seguridad
+                if (i * this.Service >= 1000)
+                {
+                    servicio += "(1) ";
+                }
+
+                if (i * this.Service >= 2000)
+                {
+                    servicio += "(2) ";
+                }
+
+                if (i * this.Service >= 2500)
+                {
+                    servicio += "(4) ";
+                }
+
+                if (i * this.Service >= 3000)
+                {
+                    servicio += "(5) ";
+                }
+
+                if (i * this.Service >= 3000)
+                {
+                    servicio += "(6) ";
+                }
+                serviciosRealizados.Add(servicio);
+            }
 
             // Construir el mensaje de resultado
-            string mensaje = "Service 1: (1) y (2)\nService 2: (1), (2), (4), (5) y (6)";
+            string mensaje = $"Cantidad de services realizados para {this.GetType().Name}: {cantidadServices}\n";
+            mensaje += "Servicios Realizados:\n";
+
+            for (int i = 0; i < serviciosRealizados.Count; i++)
+            {
+                mensaje += serviciosRealizados[i] + "\n";
+            }
 
             return mensaje;
         }
@@ -111,19 +151,60 @@ namespace SistemaGestion
 
         public override string ObtenerInformacion()
         {
-            return $" Producto: Tesla Cybertruck\n\n Año: {Año}\n Kilometraje: {UnidadDeUso} km\n Color: {Color}\n Dueño: {Dueño}\n Asientos: {Asientos}\n Autonomia: {Autonomia} km\n Service: cada {Service} km\n Carga/Combustible: {CargaRestante} %";
+            return $" Producto: Tesla Cybertruck\n\n Año: {Año}\n Kilometraje: {UnidadDeUso} km\n Color: {Color}\n Dueño: {Dueño}\n Asientos: {Asientos}\n Autonomia: {Autonomia} km\n Service: cada {Service} km\n Combustible restante: {CargaRestante} %";
         }
 
         protected override string ObtenerResultadoEscaneo()
         {
-            // Lógica específica de escaneo para el Tesla Model S
+            int cantidadServices = this.UnidadDeUso / this.Service;
+            List<string> serviciosRealizados = new List<string>();
+
+            for (int i = 1; i < cantidadServices + 1; i++)
+            {
+                // Agregar los servicios realizados a la lista
+                string servicio = $"Service {i}: ";
+
+                // Verificar si se deben realizar los controles
+                if (i * this.Service >= 1000)
+                {
+                    servicio += "(1) ";
+                }
+
+                if (i * this.Service >= 2000)
+                {
+                    servicio += "(2) ";
+                }
+
+                if (i * this.Service >= 2500)
+                {
+                    servicio += "(4) ";
+                }
+
+                if (i * this.Service >= 3000)
+                {
+                    servicio += "(5) ";
+                }
+
+                if (i * this.Service >= 3000)
+                {
+                    servicio += "(6) ";
+                }
+                serviciosRealizados.Add(servicio);
+            }
 
             // Construir el mensaje de resultado
-            string mensaje = "Service 1: (1) y (2)\nService 2: (1), (2), (4), (5) y (6)";
+            string mensaje = $"Cantidad de services realizados para {this.GetType().Name}: {cantidadServices}\n";
+            mensaje += "Servicios Realizados:\n";
+
+            for (int i = 0; i < serviciosRealizados.Count; i++)
+            {
+                mensaje += serviciosRealizados[i] + "\n";
+            }
 
             return mensaje;
         }
     }
+
 
     public class SpaceXStarship : Producto
     {
@@ -136,15 +217,40 @@ namespace SistemaGestion
 
         public override string ObtenerInformacion()
         {
-            return $" Producto: SpaceX Starship\n\n Año: {Año}\n Horas de vuelo: {UnidadDeUso} hs\n Color: {Color}\n Dueño: {Dueño}\n Autonomia: {Autonomia} hs\n Service: cada {Service} hs\n Carga/Combustible: {CargaRestante} %";
+            return $" Producto: SpaceX Starship\n\n Año: {Año}\n Horas de vuelo: {UnidadDeUso} hs\n Color: {Color}\n Dueño: {Dueño}\n Autonomia: {Autonomia} hs\n Service: cada {Service} hs\n Carga restante: {CargaRestante} %";
         }
 
         protected override string ObtenerResultadoEscaneo()
         {
-            // Lógica específica de escaneo para el Tesla Model S
+            int cantidadServices = this.UnidadDeUso / this.Service;
+            List<string> serviciosRealizados = new List<string>();
+
+            for (int i = 0; i < cantidadServices; i++)
+            {
+                // Agregar los servicios realizados a la lista
+                string servicio = $"Service {i + 1}: ";
+
+                // Verificar si se debe realizar el control de cinturones de seguridad
+                if (i * this.Service % 1000 == 0)
+                {
+                    servicio += "(3) ";
+                }
+
+                if (i * this.Service % 500 == 0)
+                {
+                    servicio += "(4) ";
+                }
+                serviciosRealizados.Add(servicio);
+            }
 
             // Construir el mensaje de resultado
-            string mensaje = "Service 1: (1) y (2)\nService 2: (1), (2), (4), (5) y (6)";
+            string mensaje = $"Cantidad de services realizados para {this.GetType().Name}: {cantidadServices}\n";
+            mensaje += "Servicios Realizados:\n";
+
+            for (int i = 0; i < serviciosRealizados.Count; i++)
+            {
+                mensaje += serviciosRealizados[i] + "\n";
+            }
 
             return mensaje;
         }
@@ -153,6 +259,7 @@ namespace SistemaGestion
     public class Falcon9 : Producto
     {
         public Falcon9()
+
         {
             UnidadDeUso = 0;
             Autonomia = 200;
@@ -161,7 +268,7 @@ namespace SistemaGestion
 
         public override string ObtenerInformacion()
         {
-            return $" Producto: SpaceX Falcon 9\n\n Año: {Año}\n Horas de vuelo: {UnidadDeUso} hs\n Color: {Color}\n Dueño: {Dueño}\n Autonomia: {Autonomia} hs\n Service: cada {Service} hs\n Carga/Combustible: {CargaRestante} %";
+            return $" Producto: SpaceX Falcon 9\n\n Año: {Año}\n Horas de vuelo: {UnidadDeUso} hs\n Color: {Color}\n Dueño: {Dueño}\n Autonomia: {Autonomia} hs\n Service: cada {Service} hs\n Carga restante: {CargaRestante} %";
         }
 
         protected override string ObtenerResultadoEscaneo()

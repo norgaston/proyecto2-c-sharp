@@ -39,7 +39,7 @@ namespace SistemaGestion
         {
             // Agregar productos a la lista
             productos.Add(new TeslaModelX() { Año = 2022, Color = "Rojo", Dueño = "John Doe", UnidadDeUso = 616 });
-            productos.Add(new TeslaModelS() { Año = 2021, Color = "Azul", Dueño = "Jane Smith", UnidadDeUso = 1230 });
+            productos.Add(new TeslaModelS() { Año = 2021, Color = "Azul", Dueño = "Jane Smith", UnidadDeUso = 4400 });
             productos.Add(new Cybertruck() { Año = 2023, Color = "Negro", Dueño = "Bob Johnson", UnidadDeUso = 450 });
             productos.Add(new SpaceXStarship() { Año = 2023, Color = "Blanco", Dueño = "SpaceX", UnidadDeUso = 1984 });
             productos.Add(new Falcon9() { Año = 2022, Color = "Gris", Dueño = "Microsoft", UnidadDeUso = 1000 });
