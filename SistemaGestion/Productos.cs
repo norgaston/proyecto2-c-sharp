@@ -68,27 +68,27 @@ namespace SistemaGestion
                 // Agregar los servicios realizados a la lista
                 string servicio = $"Service {i}: ";
 
-                // Verificar si se debe realizar el control de cinturones de seguridad en función del service actual
+                // Verificar si se debe realizar el control de cinturones de seguridad
                 if (i * this.Service >= 1000)
                 {
-                    servicio += "(1) ";
+                    servicio += "(1) "; 
                 }
-
+                // Verificar si se debe realizar el control de baterías
                 if (i * this.Service >= 2000)
                 {
                     servicio += "(2) ";
                 }
-
+                // Verificar si se debe realizar el control de sistema de navegación
                 if (i * this.Service >= 2500)
                 {
                     servicio += "(4) ";
                 }
-
+                // Verificar si se debe realizar el control de sistema de tracción
                 if (i * this.Service >= 3000)
                 {
                     servicio += "(5) ";
                 }
-
+                // Verificar si se debe realizar el control de motor
                 if (i * this.Service >= 3000)
                 {
                     servicio += "(6) ";
@@ -149,9 +149,9 @@ namespace SistemaGestion
     }
 
     // Clase concreta que representa el modelo Tesla Cybertruck
-    public class Cybertruck : TeslaBase
+    public class TeslaCybertruck : TeslaBase
     {
-        public Cybertruck()
+        public TeslaCybertruck()
         {
             UnidadDeUso = 0;
             Autonomia = 800;
@@ -181,12 +181,12 @@ namespace SistemaGestion
                 // Agregar los servicios realizados a la lista
                 string servicio = $"Service {i}: ";
 
-                // Verificar si se debe realizar los controles en función del service actual
+                // Verificar si se debe realizar el control del sistema de propulsión
                 if (i * this.Service >= 1000)
                 {
                     servicio += "(3) ";
                 }
-
+                // Verificar si se debe realizar el control del sistema de navegación
                 if (i * this.Service >= 500)
                 {
                     servicio += "(4) ";
@@ -226,9 +226,9 @@ namespace SistemaGestion
     }
 
     // Clase concreta que representa la SpaceX Falcon 9
-    public class Falcon9 : SpaceXBase
+    public class SpaceXFalcon9 : SpaceXBase
     {
-        public Falcon9()
+        public SpaceXFalcon9()
         {
             UnidadDeUso = 0;
             Autonomia = 200;
