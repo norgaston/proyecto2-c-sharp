@@ -7,26 +7,28 @@ namespace SistemaGestion
 {
     public partial class Form1 : Form
     {
-        private List<Producto> productos;
-        private ListBox listBoxProductos;
+        // Declaración de variables y controles
         private Button btnAgregar;
         private Button btnEliminar;
-        private PictureBox pictureBox1;
-        private PictureBox pictureBox2;
+        private Button btnEscanear;
         private Button btnTeslaMasKm;
         private ComboBox comboBoxTipoProducto;
         private Label label1;
-        private TextBox textBoxAño;
         private Label label2;
-        private TextBox textBoxUnidadDeUSo;
-        private TextBox textBoxColor;
         private Label label3;
         private Label label4;
-        private TextBox textBoxDueño;
         private Label label5;
+        private ListBox listBoxProductos;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox2;
+        private List<Producto> productos;
+        private TextBox textBoxAño;
+        private TextBox textBoxColor;
+        private TextBox textBoxDueño;
+        private TextBox textBoxUnidadDeUSo;
         private ToolTip toolTip;
+        private Producto producto;
         private System.ComponentModel.IContainer components;
-        private Button btnEscanear;
 
         public Form1()
         {
@@ -48,15 +50,13 @@ namespace SistemaGestion
             MostrarProductosEnLista();
 
             // Configurar el ComboBox con los tipos de productos
-            //comboBoxTipoProducto.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxTipoProducto.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxTipoProducto.Items.Add("Tesla Model X");
             comboBoxTipoProducto.Items.Add("Tesla Model S");
             comboBoxTipoProducto.Items.Add("Tesla Cybertruck");
             comboBoxTipoProducto.Items.Add("SpaceX Starship");
             comboBoxTipoProducto.Items.Add("SpaceX Falcon 9");
         }
-
-
         private void MostrarProductosEnLista()
         {
             listBoxProductos.Items.Clear();
@@ -66,7 +66,6 @@ namespace SistemaGestion
                 listBoxProductos.Items.Add(producto.ObtenerInformacion());
             }
         }
-
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
             string tipoProducto = comboBoxTipoProducto.SelectedItem?.ToString();
@@ -134,7 +133,6 @@ namespace SistemaGestion
             textBoxDueño.Clear();
         }
 
-
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
             // Verificar si hay un producto seleccionado en la lista
@@ -146,7 +144,12 @@ namespace SistemaGestion
                 // Mostrar la lista actualizada de productos
                 MostrarProductosEnLista();
             }
+            else
+            {
+                MessageBox.Show("Seleccione el producto que desea eliminar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         private void BtnTeslaMasKm_Click(object sender, EventArgs e)
         {
@@ -167,6 +170,8 @@ namespace SistemaGestion
                     // Seleccionar el producto y resaltarlo en la ListBox
                     listBoxProductos.SetSelected(indice, true);
                     MessageBox.Show(teslaConMasKm.ObtenerInformacion());
+                    // Quitar la selección del producto en el ListBox
+                    listBoxProductos.ClearSelected();
                 }
             }
             else
@@ -175,7 +180,6 @@ namespace SistemaGestion
             }
         }
 
-        private Producto producto;
         private void LstProductos_MouseClick(object sender, MouseEventArgs e)
         {
             int selectedIndex = listBoxProductos.SelectedIndex;
@@ -188,26 +192,32 @@ namespace SistemaGestion
         {
             if (listBoxProductos.SelectedIndex == -1) // Verificar si no se ha seleccionado ningún elemento en la ListBox
             {
-                MessageBox.Show("No hay vehículos para escanear.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Seleccione un producto antes de realizar el escaneo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-            }
-
-            if (producto != null)
-            {
-                producto.RealizarEscaneo();
-
             }
             else
             {
-                MessageBox.Show("Seleccione un producto antes de realizar el escaneo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (producto != null)
+                {
+                    // Obtener el producto seleccionado de la ListBox
+                    producto.RealizarEscaneo();
+                    // Quitar la selección del producto en el ListBox
+                    listBoxProductos.ClearSelected();
+                }
+                else
+                {
+                    // Manejar el caso cuando el objeto es nulo
+                    MessageBox.Show("Seleccionar el producto de la lista");
+                }             
             }
         }
+
         private Producto ObtenerTeslaConMasKilometros()
         {
             Producto teslaConMasKm = null;
             int maxKilometros = 0;
 
-            foreach (Producto producto in productos)
+            foreach (Producto producto in productos) // Recorrer la lista para obtener el Tesla con más kilómetros
             {
                 if (producto is TeslaModelX || producto is TeslaModelS || producto is TeslaCybertruck)
                 {
@@ -333,7 +343,7 @@ namespace SistemaGestion
             // label1
             // 
             label1.AutoSize=true;
-            label1.Location=new Point(613, 32);
+            label1.Location=new Point(613, 27);
             label1.Name="label1";
             label1.Size=new Size(69, 20);
             label1.TabIndex=8;
@@ -381,7 +391,7 @@ namespace SistemaGestion
             // label4
             // 
             label4.AutoSize=true;
-            label4.Location=new Point(637, 130);
+            label4.Location=new Point(637, 126);
             label4.Name="label4";
             label4.Size=new Size(45, 20);
             label4.TabIndex=14;
@@ -397,7 +407,7 @@ namespace SistemaGestion
             // label5
             // 
             label5.AutoSize=true;
-            label5.Location=new Point(629, 163);
+            label5.Location=new Point(629, 159);
             label5.Name="label5";
             label5.Size=new Size(53, 20);
             label5.TabIndex=16;
@@ -424,7 +434,7 @@ namespace SistemaGestion
             Controls.Add(btnAgregar);
             Controls.Add(listBoxProductos);
             Name="Form1";
-            Text="Sistema de Gestión SpaceX/Tesla";
+            Text="Sistema de Gestión SpaceX - Tesla";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
