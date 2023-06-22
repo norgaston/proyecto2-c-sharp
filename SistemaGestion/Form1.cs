@@ -57,6 +57,7 @@ namespace SistemaGestion
             comboBoxTipoProducto.Items.Add("SpaceX Starship");
             comboBoxTipoProducto.Items.Add("SpaceX Falcon 9");
         }
+
         private void MostrarProductosEnLista()
         {
             listBoxProductos.Items.Clear();
@@ -66,6 +67,7 @@ namespace SistemaGestion
                 listBoxProductos.Items.Add(producto.ObtenerInformacion());
             }
         }
+
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
             string tipoProducto = comboBoxTipoProducto.SelectedItem?.ToString();
@@ -150,7 +152,6 @@ namespace SistemaGestion
             }
         }
 
-
         private void BtnTeslaMasKm_Click(object sender, EventArgs e)
         {
             ResaltarTeslaConMasKm();
@@ -188,6 +189,7 @@ namespace SistemaGestion
                 producto = productos[selectedIndex];
             }
         }
+
         private void BtnEscanear_Click(object sender, EventArgs e)
         {
             if (listBoxProductos.SelectedIndex == -1) // Verificar si no se ha seleccionado ningún elemento en la ListBox
@@ -208,7 +210,7 @@ namespace SistemaGestion
                 {
                     // Manejar el caso cuando el objeto es nulo
                     MessageBox.Show("Seleccionar el producto de la lista");
-                }             
+                }
             }
         }
 
